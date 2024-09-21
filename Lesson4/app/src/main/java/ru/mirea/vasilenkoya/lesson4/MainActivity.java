@@ -1,6 +1,6 @@
 package ru.mirea.vasilenkoya.lesson4;
 
-// Импорт необходимых библиотек
+
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
