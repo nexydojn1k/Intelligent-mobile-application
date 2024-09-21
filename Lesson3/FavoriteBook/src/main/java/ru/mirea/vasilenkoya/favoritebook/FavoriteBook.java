@@ -9,15 +9,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import androidx.activity.EdgeToEdge; // Импорт для включения режима edge-to-edge
+import androidx.activity.EdgeToEdge;
 import androidx.activity.result.ActivityResult; // Импорт для обработки результата активности
 import androidx.activity.result.ActivityResultCallback; // Импорт для коллбэка обработки результата
 import androidx.activity.result.ActivityResultLauncher; // Импорт для запуска активности с результатом
 import androidx.activity.result.contract.ActivityResultContracts; // Импорт контрактов для работы с результатами
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets; // Импорт для работы с Insets
-import androidx.core.view.ViewCompat; // Импорт для поддержки view
-import androidx.core.view.WindowInsetsCompat; // Импорт для работы с WindowInsets
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 public class FavoriteBook extends AppCompatActivity {
     private ActivityResultLauncher<Intent> activityResultLauncher; // Лаунчер для получения результата из другой активности
@@ -61,7 +61,7 @@ public class FavoriteBook extends AppCompatActivity {
     // Метод для получения информации о книге
     public void getInfoAboutBook(View view) {
         Intent intent = new Intent(this, ShareActivity.class); // Создание интента для перехода на ShareActivity
-        intent.putExtra(KEY, "Анабасис"); // Передача названия книги
+        intent.putExtra(KEY, "1984"); // Передача названия книги
         activityResultLauncher.launch(intent); // Запуск активности с лаунчером
     }
 }

@@ -1,14 +1,10 @@
 package ru.mirea.vasilenkoya.systemintentsapp;
 
-import android.content.Intent; // Импорт для работы с интентами
-import android.net.Uri; // Импорт для работы с URI
-import android.os.Bundle; // Импорт для работы с Bundle
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Bundle;
+import androidx.appcompat.app.AppCompatActivity;
 
-import androidx.activity.EdgeToEdge; // Импорт для поддержки полноэкранного режима
-import androidx.appcompat.app.AppCompatActivity; // Импорт для использования AppCompatActivity
-import androidx.core.graphics.Insets; // Импорт для работы с Insets
-import androidx.core.view.ViewCompat; // Импорт для работы с ViewCompat
-import androidx.core.view.WindowInsetsCompat; // Импорт для работы с WindowInsets
 
 public class SystemIntentsApp extends AppCompatActivity {
 
