@@ -36,6 +36,10 @@ android {
 
 dependencies {
 
+    //добавленно в практике 3
+    implementation ("androidx.work:work-runtime-ktx:2.7.1")
+    implementation ("androidx.preference:preference:1.2.0")
+
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.constraintlayout)

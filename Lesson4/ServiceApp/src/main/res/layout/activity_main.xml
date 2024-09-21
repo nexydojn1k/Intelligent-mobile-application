@@ -15,7 +15,7 @@
         android:contentDescription="Play"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@android:drawable/ic_media_play" />
+        app:srcCompat="@drawable/baseline_play_arrow_24" />
 
     <ImageButton
         android:id="@+id/pause"
@@ -25,6 +25,6 @@
         android:contentDescription="Pause"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@android:drawable/ic_media_pause" />
+        app:srcCompat="@drawable/baseline_pause_24" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

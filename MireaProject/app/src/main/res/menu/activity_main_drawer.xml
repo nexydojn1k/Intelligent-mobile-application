@@ -16,5 +16,32 @@
             android:id="@+id/nav_slideshow"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/menu_slideshow" />
+
+
+        <item
+            android:id="@+id/nav_brouser"
+            android:icon="@drawable/baseline_browse_gallery_24"
+            android:title="@string/menu_brouser" />
+
+        <item
+            android:id="@+id/nav_sensor"
+            android:icon="@drawable/baseline_navigation_24"
+            android:title="Датчики" />
+
+        <item
+            android:id="@+id/nav_camera"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="Камера" />
+
+        <item
+            android:id="@+id/nav_audio_recorder"
+            android:icon="@drawable/baseline_mic_24"
+            android:title="Запись аудио" />
+
+        <item
+            android:id="@+id/nav_profile"
+            android:icon="@drawable/baseline_insert_emoticon_24"
+            android:title="Профиль" />
+
     </group>
 </menu>
