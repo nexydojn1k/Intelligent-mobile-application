@@ -6,6 +6,9 @@ android {
     namespace = "ru.mirea.vasilenkoya.internalfilestorage"
     compileSdk = 34
 
+    buildFeatures{
+        viewBinding = true
+    }
     defaultConfig {
         applicationId = "ru.mirea.vasilenkoya.internalfilestorage"
         minSdk = 26

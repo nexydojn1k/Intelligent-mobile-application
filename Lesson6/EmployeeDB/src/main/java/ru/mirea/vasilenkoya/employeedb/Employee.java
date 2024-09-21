@@ -5,8 +5,8 @@ import androidx.room.PrimaryKey;
 
 @Entity
 public class Employee {
-    @PrimaryKey(autoGenerate = true)
-    public long id;
-    public String name;
-    public int salary;
+    @PrimaryKey(autoGenerate = true) // Автоинкремент для ID
+    public long id; // Уникальный идентификатор сотрудника
+    public String name; // Имя сотрудника
+    public int salary; // Зарплата сотрудника
 }

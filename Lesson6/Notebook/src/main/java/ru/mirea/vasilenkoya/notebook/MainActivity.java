@@ -1,5 +1,6 @@
 package ru.mirea.vasilenkoya.notebook;
 
+// Импортируем необходимые библиотеки и классы
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -24,72 +25,89 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    EditText filename;
-    EditText quote;
-    Boolean isOK;
-    private static final int REQUEST_CODE_PERMISSION = 100;
+    // Объявляем элементы интерфейса
+    EditText filename;  // Поле для ввода имени файла
+    EditText quote;     // Поле для ввода текста
+    Boolean isOK;      // Переменная для проверки прав доступа
+    private static final int REQUEST_CODE_PERMISSION = 100; // Код запроса разрешения
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main); // Устанавливаем макет активности
 
+        // Инициализируем поля ввода
         filename = findViewById(R.id.editText);
         quote = findViewById(R.id.editText2);
-        int	storagePermissionStatus = ContextCompat.checkSelfPermission(this,
+
+        // Проверяем статус разрешения на запись во внешнее хранилище
+        int storagePermissionStatus = ContextCompat.checkSelfPermission(this,
                 android.Manifest.permission.WRITE_EXTERNAL_STORAGE);
-        if	(storagePermissionStatus ==	PackageManager.PERMISSION_GRANTED) {
-            isOK = true;
+        if (storagePermissionStatus == PackageManager.PERMISSION_GRANTED) {
+            isOK = true; // Если разрешение предоставлено
         } else {
-            ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.CAMERA,
+            // Запрашиваем необходимые разрешения
+            ActivityCompat.requestPermissions(this, new String[]{
+                    android.Manifest.permission.CAMERA,
                     android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_CODE_PERMISSION);
         }
 
+        // Проверяем состояние внешнего хранилища
         String state = Environment.getExternalStorageState();
         if (Environment.MEDIA_MOUNTED.equals(state)) {
-            Log.w("fewf", "ok");
-        } else Log.w("fewf", "noooooo");
+            Log.w("fewf", "ok"); // Хранилище доступно для записи
+        } else {
+            Log.w("fewf", "no"); // Хранилище недоступно
+        }
 
+        // Дополнительная проверка состояния хранилища
         if (Environment.MEDIA_MOUNTED.equals(state) ||
                 Environment.MEDIA_MOUNTED_READ_ONLY.equals(state)) {
             Log.w("fewf", "ok");
         }
     }
 
+    // Метод для сохранения текста в файл
     public void Save(View view) {
         File path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS);
+        // Создаем файл с заданным именем
         File file = new File(path, filename.getText().toString());
         try {
+            // Открываем поток для записи в файл
             FileOutputStream fileOutputStream = new FileOutputStream(file.getAbsoluteFile());
             OutputStreamWriter output = new OutputStreamWriter(fileOutputStream);
-            output.write(quote.getText().toString());
-            output.close();
+            output.write(quote.getText().toString()); // Записываем текст
+            output.close(); // Закрываем поток
         } catch (IOException e) {
-            Log.w("ExternalStorage", "Error writing " + file, e);
+            Log.w("ExternalStorage", "Error writing " + file, e); // Логируем ошибку записи
         }
     }
 
+    // Метод для загрузки текста из файла
     public void Load(View view) {
         File path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS);
+        // Создаем файл с заданным именем
         File file = new File(path, filename.getText().toString());
         try {
+            // Открываем поток для чтения из файла
             FileInputStream fileInputStream = new FileInputStream(file.getAbsoluteFile());
             InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream, StandardCharsets.UTF_8);
 
-            List<String> lines = new ArrayList<String>();
+            List<String> lines = new ArrayList<>(); // Список для хранения строк
             BufferedReader reader = new BufferedReader(inputStreamReader);
-            String line = reader.readLine();
-            while (line != null) {
-                lines.add(line);
-                line = reader.readLine();
+            String line = reader.readLine(); // Читаем первую строку
+            while (line != null) { // Пока есть строки
+                lines.add(line); // Добавляем строку в список
+                line = reader.readLine(); // Читаем следующую строку
             }
 
-            quote.setText("");
-            for (String string : lines) {
+            quote.setText(""); // Очищаем поле ввода
+            for (String string : lines) { // Добавляем строки в поле ввода
                 quote.append(string + "\n");
             }
-            Log.w("ExternalStorage", String.format("Read from file %s successful", lines.toString()));
+            Log.w("ExternalStorage", String.format("Read from file %s successful", lines.toString())); // Логируем успешное чтение
         } catch (Exception e) {
-            Log.w("ExternalStorage", String.format("Read from file %s failed", e.getMessage()));
+            Log.w("ExternalStorage", String.format("Read from file %s failed", e.getMessage())); // Логируем ошибку чтения
         }
     }
 }

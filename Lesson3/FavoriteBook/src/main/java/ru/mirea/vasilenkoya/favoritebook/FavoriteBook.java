@@ -9,54 +9,59 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import androidx.activity.EdgeToEdge;
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.activity.EdgeToEdge; // Импорт для включения режима edge-to-edge
+import androidx.activity.result.ActivityResult; // Импорт для обработки результата активности
+import androidx.activity.result.ActivityResultCallback; // Импорт для коллбэка обработки результата
+import androidx.activity.result.ActivityResultLauncher; // Импорт для запуска активности с результатом
+import androidx.activity.result.contract.ActivityResultContracts; // Импорт контрактов для работы с результатами
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+import androidx.core.graphics.Insets; // Импорт для работы с Insets
+import androidx.core.view.ViewCompat; // Импорт для поддержки view
+import androidx.core.view.WindowInsetsCompat; // Импорт для работы с WindowInsets
 
 public class FavoriteBook extends AppCompatActivity {
-    private ActivityResultLauncher<Intent> activityResultLauncher;
-    static final String KEY = "book_name";
-    static final String USER_MESSAGE="MESSAGE";
-    private TextView textViewUserBook;
-    private Button btnSend;
+    private ActivityResultLauncher<Intent> activityResultLauncher; // Лаунчер для получения результата из другой активности
+    static final String KEY = "book_name"; // Ключ для передачи названия книги
+    static final String USER_MESSAGE = "MESSAGE"; // Ключ для сообщения пользователя
+    private TextView textViewUserBook; // TextView для отображения названия книги
+    private Button btnSend; // Кнопка для отправки информации о книге
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_favorite_book);
+        EdgeToEdge.enable(this); // Включение режима edge-to-edge
+        setContentView(R.layout.activity_favorite_book); // Установка содержимого активности из XML
 
+        // Установка слушателя для применения отступов окна
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars()); // Получение отступов системных панелей
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom); // Установка отступов для вьюхи
+            return insets; // Возврат инсет-объекта
         });
 
-        textViewUserBook = findViewById(R.id.textViewBook);
+        textViewUserBook = findViewById(R.id.textViewBook); // Инициализация TextView для отображения названия книги
 
+        // Создание коллбэка для обработки результата активности
         ActivityResultCallback<ActivityResult> callback = new ActivityResultCallback<ActivityResult>() {
             @Override
             public void onActivityResult(ActivityResult result) {
-                if (result.getResultCode() == Activity.RESULT_OK) {
-                    Intent data = result.getData();
-                    String userBook = data.getStringExtra(EXTRA_TEXT);
-                    textViewUserBook.setText("Название Вашей любимой книги: "+userBook);
+                if (result.getResultCode() == Activity.RESULT_OK) { // Проверка, успешно ли завершилась активность
+                    Intent data = result.getData(); // Получение данных из результата
+                    String userBook = data.getStringExtra(EXTRA_TEXT); // Извлечение названия книги из данных
+                    textViewUserBook.setText("Название Вашей любимой книги: " + userBook); // Установка текста в TextView
                 }
             }
         };
+        // Регистрация лаунчера для получения результата из другой активности
         activityResultLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
                 callback);
     }
+
+    // Метод для получения информации о книге
     public void getInfoAboutBook(View view) {
-        Intent intent = new Intent(this, ShareActivity.class);
-        intent.putExtra(KEY, "Анабасис");
-        activityResultLauncher.launch(intent);
+        Intent intent = new Intent(this, ShareActivity.class); // Создание интента для перехода на ShareActivity
+        intent.putExtra(KEY, "Анабасис"); // Передача названия книги
+        activityResultLauncher.launch(intent); // Запуск активности с лаунчером
     }
 }
