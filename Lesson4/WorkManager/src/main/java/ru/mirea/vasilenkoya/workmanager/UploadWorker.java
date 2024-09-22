@@ -23,15 +23,15 @@ public class UploadWorker extends Worker {
     @NonNull
     @Override
     public Result doWork() {
-        Log.d(TAG, "doWork: start"); // Логирование начала выполнения работы
+        Log.d(TAG, "doWork: start");                    // Логирование начала выполнения работы
         try {
-            TimeUnit.SECONDS.sleep(10); // Имитация длительной работы (задержка на 10 секунд)
+            TimeUnit.SECONDS.sleep(10);               // Имитация длительной работы (задержка на 10 секунд)
         } catch (InterruptedException e) {
-            e.printStackTrace(); // Логирование ошибок, если работа прервана
-            return Result.failure(); // Возврат неудачи при прерывании
+            e.printStackTrace();                             // Логирование ошибок, если работа прервана
+            return Result.failure();                         // Возврат неудачи при прерывании
         }
 
-        Log.d(TAG, "doWork: end"); // Логирование окончания работы
-        return Result.success(); // Возврат успешного результата
+        Log.d(TAG, "doWork: end");                      // Логирование окончания работы
+        return Result.success();                             // Возврат успешного результата
     }
 }

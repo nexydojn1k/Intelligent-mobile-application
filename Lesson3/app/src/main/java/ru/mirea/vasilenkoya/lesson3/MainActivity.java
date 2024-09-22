@@ -1,12 +1,12 @@
 package ru.mirea.vasilenkoya.lesson3;
 
-import android.os.Bundle;
 
+import android.os.Bundle;
 import androidx.activity.EdgeToEdge; // Импортирование класса для поддержки edge-to-edge интерфейсов
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets; // Импортирование класса для работы сInsets
-import androidx.core.view.ViewCompat; // Импортирование класса для поддержки view
-import androidx.core.view.WindowInsetsCompat; // Импортирование класса для работы с WindowInsets
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,8 +20,10 @@ public class MainActivity extends AppCompatActivity {
 
         // Установка слушателя для применения отступов окна
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+
             // Получение отступов для системных панелей (например, статус-бара и навигационной панели)
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+
             // Установка отступов для вьюхи, чтобы избежать перекрытия контента
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets; // Возврат инсет-объекта

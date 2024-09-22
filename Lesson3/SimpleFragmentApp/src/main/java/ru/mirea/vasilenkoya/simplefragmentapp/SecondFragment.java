@@ -37,27 +37,27 @@ public class SecondFragment extends Fragment {
      * @return Новый экземпляр фрагмента SecondFragment.
      */
     public static SecondFragment newInstance(String param1, String param2) {
-        SecondFragment fragment = new SecondFragment(); // Создание нового экземпляра фрагмента
-        Bundle args = new Bundle(); // Создание Bundle для передачи параметров
-        args.putString(ARG_PARAM1, param1); // Добавление параметра 1
-        args.putString(ARG_PARAM2, param2); // Добавление параметра 2
-        fragment.setArguments(args); // Установка аргументов фрагмента
-        return fragment; // Возврат созданного фрагмента
+        SecondFragment fragment = new SecondFragment();         // Создание нового экземпляра фрагмента
+        Bundle args = new Bundle();                             // Создание Bundle для передачи параметров
+        args.putString(ARG_PARAM1, param1);                     // Добавление параметра 1
+        args.putString(ARG_PARAM2, param2);                     // Добавление параметра 2
+        fragment.setArguments(args);                            // Установка аргументов фрагмента
+        return fragment;                                        // Возврат созданного фрагмента
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState); // Вызов метода родительского класса
-        if (getArguments() != null) { // Проверка, были ли установлены аргументы
-            mParam1 = getArguments().getString(ARG_PARAM1); // Получение значения аргумента 1
-            mParam2 = getArguments().getString(ARG_PARAM2); // Получение значения аргумента 2
+        super.onCreate(savedInstanceState);                     // Вызов метода родительского класса
+        if (getArguments() != null) {                           // Проверка, были ли установлены аргументы
+            mParam1 = getArguments().getString(ARG_PARAM1);     // Получение значения аргумента 1
+            mParam2 = getArguments().getString(ARG_PARAM2);     // Получение значения аргумента 2
         }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Инфлейт вью для фрагмента из XML
+
         return inflater.inflate(R.layout.fragment_second, container, false);
     }
 }

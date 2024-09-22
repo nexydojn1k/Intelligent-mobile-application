@@ -13,8 +13,8 @@ import android.view.View;
 import ru.mirea.vasilenkoya.serviceapp.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
-    ActivityMainBinding binding; // Binding для доступа к UI элементам
-    private int PermissionCode = 200; // Код запроса разрешений
+    ActivityMainBinding binding;        // Binding для доступа к UI элементам
+    private int PermissionCode = 200;   // Код запроса разрешений
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

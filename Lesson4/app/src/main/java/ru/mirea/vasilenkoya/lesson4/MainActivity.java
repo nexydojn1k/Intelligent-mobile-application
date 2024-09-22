@@ -8,7 +8,7 @@ import android.view.View;
 import ru.mirea.vasilenkoya.lesson4.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
-    private ActivityMainBinding binding; // Переменная для привязки
+    private ActivityMainBinding binding;                // Переменная для привязки
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Инициализация привязки
         binding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot()); // Установка корневого представления
+        setContentView(binding.getRoot());              // Установка корневого представления
 
         // Установка текста в TextView
         binding.textViewMirea.setText("Мой номер по списку №3");

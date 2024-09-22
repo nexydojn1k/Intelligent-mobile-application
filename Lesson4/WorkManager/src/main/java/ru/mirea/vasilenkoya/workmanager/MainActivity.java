@@ -21,13 +21,13 @@ public class MainActivity extends AppCompatActivity {
 
         // Установка ограничений для фоновой задачи
         Constraints constraints = new Constraints.Builder()
-                .setRequiredNetworkType(NetworkType.UNMETERED) // Задача требует неограниченного доступа к сети
-                .setRequiresCharging(true) // Задача выполняется только при зарядке устройства
+                .setRequiredNetworkType(NetworkType.UNMETERED)          // Задача требует неограниченного доступа к сети
+                .setRequiresCharging(true)                              // Задача выполняется только при зарядке устройства
                 .build();
 
         // Создание запроса на выполнение фоновой задачи
         WorkRequest uploadWorkRequest = new OneTimeWorkRequest.Builder(UploadWorker.class) // Указание класса, который будет выполнять задачу
-                .setConstraints(constraints) // Применение ограничений
+                .setConstraints(constraints)                                               // Применение ограничений
                 .build();
 
         // Добавление запроса на выполнение задачи в очередь

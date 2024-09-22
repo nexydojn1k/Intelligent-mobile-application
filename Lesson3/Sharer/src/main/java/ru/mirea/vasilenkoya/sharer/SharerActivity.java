@@ -18,13 +18,11 @@ public class SharerActivity extends AppCompatActivity {
 
         // Установка слушателя для применения отступов окна
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars()); // Получение отступов для системных панелей
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());         // Получение отступов для системных панелей
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom); // Установка отступов
             return insets; // Возврат инсет-объекта
         });
 
-        // Эта строка повторно вызывает onCreate
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sharer); // Дублирование установки содержимого
     }
 }

@@ -19,8 +19,8 @@ public class MyLooper extends Thread {
     // Метод run, который выполняется при старте потока
     public void run() {
         Log.d("MyLooper", "run");
-        Looper.prepare(); // Подготовка Looper для этого потока
-        mHandler = new Handler(Looper.myLooper()) { // Создание Handler с привязкой к Looper
+        Looper.prepare();                                                   // Подготовка Looper для этого потока
+        mHandler = new Handler(Looper.myLooper()) {                         // Создание Handler с привязкой к Looper
             public void handleMessage(Message msg) {
                 // Получение данных из сообщения
                 String age = msg.getData().getString("AGE");
@@ -38,12 +38,12 @@ public class MyLooper extends Thread {
                 try {
                     // Задержка в зависимости от возраста (в секундах)
                     TimeUnit.SECONDS.sleep(Integer.parseInt(age));
-                    mainHandler.sendMessage(message); // Отправка сообщения в основной поток
+                    mainHandler.sendMessage(message);                          // Отправка сообщения в основной поток
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
         };
-        Looper.loop(); // Запуск цикла обработки сообщений
+        Looper.loop();                                                         // Запуск цикла обработки сообщений
     }
 }

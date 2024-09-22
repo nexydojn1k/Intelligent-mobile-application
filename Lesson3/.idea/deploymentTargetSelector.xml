@@ -13,6 +13,14 @@
       </SelectionState>
       <SelectionState runConfigName="Sharer">
         <option name="selectionMode" value="DROPDOWN" />
+        <DropdownSelection timestamp="2024-09-21T15:50:59.047567600Z">
+          <Target type="DEFAULT_BOOT">
+            <handle>
+              <DeviceId pluginId="LocalEmulator" identifier="path=C:\Users\yulch\.android\avd\fdvbgfdgvfdvgfdvb.avd" />
+            </handle>
+          </Target>
+        </DropdownSelection>
+        <DialogSelection />
       </SelectionState>
       <SelectionState runConfigName="systemintentsapp">
         <option name="selectionMode" value="DROPDOWN" />

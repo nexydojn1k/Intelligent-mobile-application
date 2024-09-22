@@ -39,12 +39,12 @@ public class MainActivity extends AppCompatActivity {
                 // Создание нового сообщения для отправки в Looper
                 Message msg = Message.obtain();
                 Bundle bundle = new Bundle();
-                String age = binding.editTextAge.getText().toString(); // Получение возраста из EditText
-                String occupation = binding.editTextOccupation.getText().toString(); // Получение профессии
+                String age = binding.editTextAge.getText().toString();                      // Получение возраста из EditText
+                String occupation = binding.editTextOccupation.getText().toString();        // Получение профессии
                 bundle.putString("AGE", age);
                 bundle.putString("OCCUPATION", occupation);
-                msg.setData(bundle); // Установка данных в сообщение
-                myLooper.mHandler.sendMessage(msg); // Отправка сообщения в обработчик Looper
+                msg.setData(bundle);                                                        // Установка данных в сообщение
+                myLooper.mHandler.sendMessage(msg);                                         // Отправка сообщения в обработчик Looper
             }
         });
     }

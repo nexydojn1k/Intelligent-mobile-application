@@ -46,13 +46,13 @@ public class MainActivity extends AppCompatActivity {
         Thread t = new Thread(new Runnable() {
             public void run() {
                 try {
-                    TimeUnit.SECONDS.sleep(2); // Задержка в 2 секунды
-                    runOnUiThread(runn1); // Выполнение runn1 на основном потоке
-                    TimeUnit.SECONDS.sleep(1); // Задержка в 1 секунду
-                    binding.TextView.postDelayed(runn3, 2000); // Запуск runn3 с задержкой в 2 секунды
-                    binding.TextView.post(runn2); // Выполнение runn2 на основном потоке
+                    TimeUnit.SECONDS.sleep(2);                      // Задержка в 2 секунды
+                    runOnUiThread(runn1);                                   // Выполнение runn1 на основном потоке
+                    TimeUnit.SECONDS.sleep(1);                      // Задержка в 1 секунду
+                    binding.TextView.postDelayed(runn3, 2000);      // Запуск runn3 с задержкой в 2 секунды
+                    binding.TextView.post(runn2);                           // Выполнение runn2 на основном потоке
                 } catch (InterruptedException e) {
-                    e.printStackTrace(); // Обработка прерывания потока
+                    e.printStackTrace();                                    // Обработка прерывания потока
                 }
             }
         });
