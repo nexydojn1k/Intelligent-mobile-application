@@ -21,17 +21,17 @@ import java.io.File;
 import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
-    private ActivityMainBinding binding; // Привязка для доступа к элементам интерфейса
-    private static final int REQUEST_CODE_PERMISSION = 200; // Код запроса разрешений
-    private final String TAG = MainActivity.class.getSimpleName(); // Тег для логирования
-    private boolean isWork; // Флаг для проверки состояния приложения
-    private String recordFilePath = null; // Путь к файлу записи
-    private Button recordButton = null; // Кнопка записи
-    private Button playButton = null; // Кнопка воспроизведения
-    private MediaRecorder recorder = null; // Объект для записи аудио
-    private MediaPlayer player = null; // Объект для воспроизведения аудио
-    boolean isStartRecording = true; // Флаг начала записи
-    boolean isStartPlaying = true; // Флаг начала воспроизведения
+    private ActivityMainBinding binding;                            // Привязка для доступа к элементам интерфейса
+    private static final int REQUEST_CODE_PERMISSION = 200;         // Код запроса разрешений
+    private final String TAG = MainActivity.class.getSimpleName();  // Тег для логирования
+    private boolean isWork;                                         // Флаг для проверки состояния приложения
+    private String recordFilePath = null;                           // Путь к файлу записи
+    private Button recordButton = null;                             // Кнопка записи
+    private Button playButton = null;                               // Кнопка воспроизведения
+    private MediaRecorder recorder = null;                          // Объект для записи аудио
+    private MediaPlayer player = null;                              // Объект для воспроизведения аудио
+    boolean isStartRecording = true;                                // Флаг начала записи
+    boolean isStartPlaying = true;                                  // Флаг начала воспроизведения
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,9 +44,9 @@ public class MainActivity extends AppCompatActivity {
         // Инициализация кнопок записи и воспроизведения
         recordButton = binding.recordButton;
         playButton = binding.playButton;
-        playButton.setEnabled(false); // Деактивируем кнопку воспроизведения по умолчанию
+        playButton.setEnabled(false);                                                   // Деактивируем кнопку воспроизведения по умолчанию
         recordFilePath = (new File(getExternalFilesDir(Environment.DIRECTORY_MUSIC),
-                "/audiorecordtest.3gp")).getAbsolutePath(); // Устанавливаем путь для сохранения файла
+                "/audiorecordtest.3gp")).getAbsolutePath();                         // Устанавливаем путь для сохранения файла
 
         // Проверка разрешений на запись аудио и запись на внешнюю память
         int audioRecordPermissionStatus = ContextCompat.checkSelfPermission(this,
@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
                 Manifest.permission.WRITE_EXTERNAL_STORAGE);
         if (audioRecordPermissionStatus == PackageManager.PERMISSION_GRANTED &&
                 storagePermissionStatus == PackageManager.PERMISSION_GRANTED) {
-            isWork = true; // Разрешения предоставлены
+            isWork = true;                                                                      // Разрешения предоставлены
         } else {
             ActivityCompat.requestPermissions(this,
                     new String[]{Manifest.permission.RECORD_AUDIO,
@@ -67,15 +67,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (isStartRecording) {
-                    recordButton.setText("Stop recording"); // Изменяем текст кнопки
-                    playButton.setEnabled(false); // Деактивируем кнопку воспроизведения
-                    startRecording(); // Начинаем запись
+                    recordButton.setText("Stop recording");                 // Изменяем текст кнопки
+                    playButton.setEnabled(false);                           // Деактивируем кнопку воспроизведения
+                    startRecording();                                       // Начинаем запись
                 } else {
-                    recordButton.setText("Start recording"); // Изменяем текст кнопки
-                    playButton.setEnabled(true); // Активируем кнопку воспроизведения
-                    stopRecording(); // Останавливаем запись
+                    recordButton.setText("Start recording");                // Изменяем текст кнопки
+                    playButton.setEnabled(true);                            // Активируем кнопку воспроизведения
+                    stopRecording();                                        // Останавливаем запись
                 }
-                isStartRecording = !isStartRecording; // Переключаем состояние
+                isStartRecording = !isStartRecording;                       // Переключаем состояние
             }
         });
 
@@ -84,53 +84,53 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (isStartPlaying) {
-                    playButton.setText("Stop playing"); // Изменяем текст кнопки
-                    recordButton.setEnabled(false); // Деактивируем кнопку записи
-                    startPlaying(); // Начинаем воспроизведение
+                    playButton.setText("Stop playing");                 // Изменяем текст кнопки
+                    recordButton.setEnabled(false);                     // Деактивируем кнопку записи
+                    startPlaying();                                     // Начинаем воспроизведение
                 } else {
-                    playButton.setText("Start playing"); // Изменяем текст кнопки
-                    recordButton.setEnabled(true); // Активируем кнопку записи
-                    stopPlaying(); // Останавливаем воспроизведение
+                    playButton.setText("Start playing");                // Изменяем текст кнопки
+                    recordButton.setEnabled(true);                      // Активируем кнопку записи
+                    stopPlaying();                                      // Останавливаем воспроизведение
                 }
-                isStartPlaying = !isStartPlaying; // Переключаем состояние
+                isStartPlaying = !isStartPlaying;                       // Переключаем состояние
             }
         });
     }
 
     private void startRecording() {
-        recorder = new MediaRecorder(); // Создаем новый объект MediaRecorder
-        recorder.setAudioSource(MediaRecorder.AudioSource.MIC); // Устанавливаем источник аудио
+        recorder = new MediaRecorder();                                 // Создаем новый объект MediaRecorder
+        recorder.setAudioSource(MediaRecorder.AudioSource.MIC);         // Устанавливаем источник аудио
         recorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP); // Устанавливаем формат выходного файла
-        recorder.setOutputFile(recordFilePath); // Устанавливаем путь к файлу
-        recorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB); // Устанавливаем кодировщик аудио
+        recorder.setOutputFile(recordFilePath);                         // Устанавливаем путь к файлу
+        recorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);    // Устанавливаем кодировщик аудио
         try {
-            recorder.prepare(); // Подготавливаем MediaRecorder
+            recorder.prepare();                 // Подготавливаем MediaRecorder
         } catch (IOException e) {
             Log.e(TAG, "prepare() failed"); // Логируем ошибку
         }
-        recorder.start(); // Начинаем запись
+        recorder.start();                           // Начинаем запись
     }
 
     private void stopRecording() {
-        recorder.stop(); // Останавливаем запись
-        recorder.release(); // Освобождаем ресурсы
-        recorder = null; // Устанавливаем объект в null
+        recorder.stop();                            // Останавливаем запись
+        recorder.release();                         // Освобождаем ресурсы
+        recorder = null;                            // Устанавливаем объект в null
     }
 
     private void startPlaying() {
-        player = new MediaPlayer(); // Создаем новый объект MediaPlayer
+        player = new MediaPlayer();                 // Создаем новый объект MediaPlayer
         try {
-            player.setDataSource(recordFilePath); // Устанавливаем источник данных
-            player.prepare(); // Подготавливаем MediaPlayer
-            player.start(); // Начинаем воспроизведение
+            player.setDataSource(recordFilePath);   // Устанавливаем источник данных
+            player.prepare();                       // Подготавливаем MediaPlayer
+            player.start();                         // Начинаем воспроизведение
         } catch (IOException e) {
-            Log.d(TAG, "prepare() failed"); // Логируем ошибку
+            Log.d(TAG, "prepare() failed");     // Логируем ошибку
         }
     }
 
     private void stopPlaying() {
-        player.release(); // Освобождаем ресурсы
-        player = null; // Устанавливаем объект в null
+        player.release();                               // Освобождаем ресурсы
+        player = null;                                  // Устанавливаем объект в null
     }
 
     @Override

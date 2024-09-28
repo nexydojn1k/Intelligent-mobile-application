@@ -15,8 +15,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         // Инициализация привязки
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());              // Установка корневого представления
+        binding = ActivityMainBinding.inflate(getLayoutInflater()); //метод inflate заявляет, что активируется binding
+        setContentView(binding.getRoot());                          // возвращение корневого представления
 
         // Установка текста в TextView
         binding.textViewMirea.setText("Мой номер по списку №3");

@@ -30,17 +30,17 @@ import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final int REQUEST_CODE_PERMISSION = 100; // Код запроса разрешений
-    private static final int CAMERA_REQUEST = 0; // Код запроса камеры
-    private boolean isWork = false; // Флаг для проверки состояния приложения
-    private Uri imageUri; // URI для сохраненного изображения
-    private ActivityMainBinding binding; // Привязка для доступа к элементам интерфейса
+    private static final int REQUEST_CODE_PERMISSION = 100;             // Код запроса разрешений
+    private static final int CAMERA_REQUEST = 0;                        // Код запроса камеры
+    private boolean isWork = false;                                     // Флаг для проверки состояния приложения
+    private Uri imageUri;                                               // URI для сохраненного изображения
+    private ActivityMainBinding binding;                                // Привязка для доступа к элементам интерфейса
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityMainBinding.inflate(getLayoutInflater()); // Инициализация привязки
-        setContentView(binding.getRoot()); // Установка основного представления
+        binding = ActivityMainBinding.inflate(getLayoutInflater());             // Инициализация привязки
+        setContentView(binding.getRoot());                                      // Установка основного представления
 
         // Проверка разрешений на камеру и запись в хранилище
         int cameraPermissionStatus = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA);
@@ -48,7 +48,8 @@ public class MainActivity extends AppCompatActivity {
         if (cameraPermissionStatus == PackageManager.PERMISSION_GRANTED && storagePermissionStatus == PackageManager.PERMISSION_GRANTED) {
             isWork = true; // Разрешения предоставлены
         } else {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_CODE_PERMISSION); // Запрос разрешений
+            // Запрос разрешений
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_CODE_PERMISSION);
         }
 
         // Обработчик результата запуска камеры
@@ -70,16 +71,16 @@ public class MainActivity extends AppCompatActivity {
         binding.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE); // Создание Intent для захвата изображения
+                Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);                               // Создание Intent для захвата изображения
                 if (isWork) {
                     try {
-                        File photoFile = createImageFile(); // Создание файла для изображения
-                        String authorities = getApplicationContext().getPackageName() + ".fileprovider"; // Получение имени провайдера файлов
+                        File photoFile = createImageFile();                                                      // Создание файла для изображения
+                        String authorities = getApplicationContext().getPackageName() + ".fileprovider";         // Получение имени провайдера файлов
                         imageUri = FileProvider.getUriForFile(MainActivity.this, authorities, photoFile); // Получение URI для файла
-                        cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri); // Передача URI в Intent
-                        cameraActivityResultLauncher.launch(cameraIntent); // Запуск Intent для камеры
+                        cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);                                // Передача URI в Intent
+                        cameraActivityResultLauncher.launch(cameraIntent);                                       // Запуск Intent для камеры
                     } catch (IOException e) {
-                        e.printStackTrace(); // Обработка исключений
+                        e.printStackTrace();        // Обработка исключений
                     }
                 }
             }
@@ -89,16 +90,16 @@ public class MainActivity extends AppCompatActivity {
     // Метод для создания файла изображения
     private File createImageFile() throws IOException {
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.ENGLISH).format(new Date()); // Форматирование метки времени
-        String imageFileName = "IMAGE_" + timeStamp + "_"; // Имя файла
-        File storageDirectory = getExternalFilesDir(Environment.DIRECTORY_PICTURES); // Директория для хранения изображений
-        return File.createTempFile(imageFileName, ".jpg", storageDirectory); // Создание временного файла
+        String imageFileName = "IMAGE_" + timeStamp + "_";                                                    // Имя файла
+        File storageDirectory = getExternalFilesDir(Environment.DIRECTORY_PICTURES);                          // Директория для хранения изображений
+        return File.createTempFile(imageFileName, ".jpg", storageDirectory);                             // Создание временного файла
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == REQUEST_CODE_PERMISSION) {
-            isWork = grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED; // Проверка статуса разрешений
+            isWork = grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED;           // Проверка статуса разрешений
         }
     }
 }

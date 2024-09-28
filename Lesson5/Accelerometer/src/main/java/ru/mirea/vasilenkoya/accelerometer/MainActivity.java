@@ -13,11 +13,11 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity implements SensorEventListener {
 
     // Объявляем элементы интерфейса
-    private TextView azimuthTextView; // Для отображения значения азимута
-    private TextView pitchTextView;    // Для отображения значения угла наклона
-    private TextView rollTextView;     // Для отображения значения крена
-    private SensorManager sensorManager; // Менеджер для работы с сенсорами
-    private Sensor accelerometerSensor; // Акселерометр
+    private TextView azimuthTextView;       // Для отображения значения азимута
+    private TextView pitchTextView;         // Для отображения значения угла наклона
+    private TextView rollTextView;          // Для отображения значения крена
+    private SensorManager sensorManager;    // Менеджер для работы с сенсорами
+    private Sensor accelerometerSensor;     // Акселерометр
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

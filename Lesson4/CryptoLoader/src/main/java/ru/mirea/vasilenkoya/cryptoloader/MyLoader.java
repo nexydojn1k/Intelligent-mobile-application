@@ -33,7 +33,7 @@ public class MyLoader extends AsyncTaskLoader<String> {
 
             // Расшифровка сообщения
             byte[] decryptedMessage = cipher.doFinal(Base64.getDecoder().decode(encodedMessage));
-            message = new String(decryptedMessage);                                                             // Преобразование байтового массива в строку
+            message = new String(decryptedMessage);                                                           // Преобразование байтового массива в строку
         }
     }
 
