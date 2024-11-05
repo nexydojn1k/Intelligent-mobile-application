@@ -10,6 +10,14 @@
       </SelectionState>
       <SelectionState runConfigName="Camera">
         <option name="selectionMode" value="DROPDOWN" />
+        <DropdownSelection timestamp="2024-10-13T14:32:37.368674200Z">
+          <Target type="DEFAULT_BOOT">
+            <handle>
+              <DeviceId pluginId="LocalEmulator" identifier="path=C:\Users\yulch\.android\avd\Pixel_8a_API_35.avd" />
+            </handle>
+          </Target>
+        </DropdownSelection>
+        <DialogSelection />
       </SelectionState>
       <SelectionState runConfigName="AudioRecord">
         <option name="selectionMode" value="DROPDOWN" />

@@ -36,6 +36,8 @@ android {
 }
 
 dependencies {
+    implementation("androidx.core:core:1.10.1")
+    implementation("androidx.activity:activity:1.7.2")
 
     implementation(libs.appcompat)
     implementation(libs.material)
